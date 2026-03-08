@@ -18,9 +18,22 @@ const navLinks = [
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 50);
+
+      // Track active section
+      const sections = navLinks.map(l => l.href.slice(1));
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sections[i]);
+        if (el && el.getBoundingClientRect().top <= 150) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -32,43 +45,75 @@ const Header = () => {
   };
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
       className={cn(
-        "fixed z-50 w-full transition-all duration-300",
+        "fixed z-50 w-full transition-all duration-500",
         scrolled
           ? "bg-card/95 backdrop-blur-md shadow-card border-b border-border"
           : "bg-transparent"
       )}
     >
       <div className="container flex items-center justify-between h-16 md:h-20">
-        <a
+        <motion.a
           href="#"
           onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           className={cn(
             "text-xl md:text-2xl font-display font-bold transition-colors duration-300",
             scrolled ? "text-foreground" : "text-white"
           )}
         >
-          Anesh<span className="text-accent">.</span>
-        </a>
+          Anesh<motion.span
+            className="text-accent inline-block"
+            animate={{ scale: [1, 1.3, 1] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut", repeatDelay: 3 }}
+          >.</motion.span>
+        </motion.a>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <button
-              key={link.href}
-              onClick={() => handleClick(link.href)}
-              className={cn(
-                "text-sm font-medium transition-colors hover:text-accent",
-                scrolled ? "text-muted-foreground" : "text-white/80"
-              )}
-            >
-              {link.label}
-            </button>
-          ))}
+        <nav className="hidden lg:flex items-center gap-1">
+          {navLinks.map((link, i) => {
+            const isActive = activeSection === link.href.slice(1);
+            return (
+              <motion.button
+                key={link.href}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 + i * 0.06 }}
+                onClick={() => handleClick(link.href)}
+                whileHover={{ y: -2 }}
+                className={cn(
+                  "relative text-sm font-medium transition-colors px-3 py-2 rounded-lg",
+                  isActive
+                    ? "text-accent"
+                    : scrolled
+                      ? "text-muted-foreground hover:text-accent"
+                      : "text-white/70 hover:text-white"
+                )}
+              >
+                {link.label}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeNav"
+                    className="absolute bottom-0 left-1/2 -translate-x-1/2 w-5 h-0.5 rounded-full bg-accent"
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  />
+                )}
+              </motion.button>
+            );
+          })}
         </nav>
 
-        <a
+        <motion.a
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1 }}
+          whileHover={{ scale: 1.05, boxShadow: "0 4px 15px hsl(16 84% 62% / 0.3)" }}
+          whileTap={{ scale: 0.95 }}
           href="/resume_anesh.pdf"
           target="_blank"
           rel="noopener noreferrer"
@@ -78,10 +123,12 @@ const Header = () => {
           )}
         >
           Resume
-        </a>
+        </motion.a>
 
         {/* Mobile hamburger */}
-        <button
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
           className={cn(
             "lg:hidden p-2 rounded-md transition-colors",
             scrolled ? "hover:bg-muted" : "text-white hover:bg-white/10"
@@ -89,8 +136,18 @@ const Header = () => {
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
         >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+          <AnimatePresence mode="wait">
+            {mobileOpen ? (
+              <motion.div key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                <X className="w-6 h-6" />
+              </motion.div>
+            ) : (
+              <motion.div key="menu" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
+                <Menu className="w-6 h-6" />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.button>
       </div>
 
       {/* Mobile drawer */}
@@ -100,31 +157,41 @@ const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="lg:hidden bg-card border-t border-border shadow-lg overflow-hidden"
           >
-            <nav className="container py-4 flex flex-col gap-2">
-              {navLinks.map((link) => (
-                <button
+            <nav className="container py-4 flex flex-col gap-1">
+              {navLinks.map((link, i) => (
+                <motion.button
                   key={link.href}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.05 }}
                   onClick={() => handleClick(link.href)}
-                  className="py-3 px-4 rounded-lg text-sm font-medium hover:bg-muted transition-colors text-left"
+                  className={cn(
+                    "py-3 px-4 rounded-lg text-sm font-medium hover:bg-muted transition-colors text-left",
+                    activeSection === link.href.slice(1) && "text-accent bg-accent/5"
+                  )}
                 >
                   {link.label}
-                </button>
+                </motion.button>
               ))}
-              <a
+              <motion.a
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
                 href="/resume_anesh.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-2 text-center py-3 rounded-full bg-accent text-accent-foreground font-medium text-sm"
               >
                 Resume
-              </a>
+              </motion.a>
             </nav>
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+    </motion.header>
   );
 };
 
