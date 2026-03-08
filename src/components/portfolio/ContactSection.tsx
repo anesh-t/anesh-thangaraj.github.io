@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Mail, Phone, MapPin, Linkedin, Github, ExternalLink } from "lucide-react";
+import { Mail, Phone, MapPin, Linkedin, Github, ExternalLink, Code2, Terminal } from "lucide-react";
 
 const ContactSection = () => (
   <section id="contact" className="py-20 md:py-28 bg-gradient-hero text-primary-foreground">
