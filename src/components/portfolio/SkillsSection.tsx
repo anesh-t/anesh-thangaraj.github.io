@@ -40,11 +40,6 @@ const skillCategories = [
   },
 ];
 
-const awards = [
-  { emoji: "🏆", title: "Community Choice Award", detail: "Fall 2025 GenAI Case Competition · CFO Intelligence Platform" },
-  { emoji: "🏅", title: "GW Business Fellowship Award", detail: "Merit-based · ~$22,000 (35% tuition coverage)" },
-];
-
 const SkillsSection = () => (
   <section id="skills" className="py-20 md:py-28 bg-background">
     <div className="container">
