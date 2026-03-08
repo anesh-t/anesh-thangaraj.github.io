@@ -9,6 +9,7 @@ import SkillsSection from "@/components/portfolio/SkillsSection";
 import PublicationsSection from "@/components/portfolio/PublicationsSection";
 import VolunteeringSection from "@/components/portfolio/VolunteeringSection";
 import OrganizationsSection from "@/components/portfolio/OrganizationsSection";
+import BeyondWorkSection from "@/components/portfolio/BeyondWorkSection";
 import ContactSection from "@/components/portfolio/ContactSection";
 
 const Index = () => {
