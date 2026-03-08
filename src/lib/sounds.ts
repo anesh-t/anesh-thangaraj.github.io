@@ -28,22 +28,31 @@ export function playHoverSound() {
 export function playClickSound() {
   const ctx = getAudioContext();
   if (!ctx) return;
-  // Gentle soft "pop" — single muted tone
-  const osc = ctx.createOscillator();
+
+  // Professional crisp UI tap — short noise burst filtered to a tight band
+  const bufferSize = ctx.sampleRate * 0.03; // 30ms
+  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+  const data = buffer.getChannelData(0);
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, 8);
+  }
+
+  const source = ctx.createBufferSource();
+  source.buffer = buffer;
+
+  const bandpass = ctx.createBiquadFilter();
+  bandpass.type = "bandpass";
+  bandpass.frequency.setValueAtTime(3200, ctx.currentTime);
+  bandpass.Q.setValueAtTime(2, ctx.currentTime);
+
   const gain = ctx.createGain();
-  const filter = ctx.createBiquadFilter();
-  filter.type = "lowpass";
-  filter.frequency.setValueAtTime(400, ctx.currentTime);
-  osc.connect(filter);
-  filter.connect(gain);
+  gain.gain.setValueAtTime(0.06, ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.025);
+
+  source.connect(bandpass);
+  bandpass.connect(gain);
   gain.connect(ctx.destination);
-  osc.frequency.setValueAtTime(520, ctx.currentTime);
-  osc.frequency.exponentialRampToValueAtTime(320, ctx.currentTime + 0.08);
-  osc.type = "sine";
-  gain.gain.setValueAtTime(0.025, ctx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.08);
-  osc.start(ctx.currentTime);
-  osc.stop(ctx.currentTime + 0.08);
+  source.start(ctx.currentTime);
 }
 
 export function playSplashSound() {
