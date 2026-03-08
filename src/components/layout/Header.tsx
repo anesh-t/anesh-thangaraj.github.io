@@ -109,22 +109,50 @@ const Header = () => {
           })}
         </nav>
 
-        <motion.a
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 1 }}
-          whileHover={{ scale: 1.05, boxShadow: "0 4px 15px hsl(16 84% 62% / 0.3)" }}
-          whileTap={{ scale: 0.95 }}
-          href="/resume_anesh.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={cn(
-            "hidden lg:inline-flex items-center px-5 py-2 rounded-full text-sm font-medium transition-all",
-            "bg-accent text-accent-foreground hover:bg-coral-hover"
-          )}
-        >
-          Resume
-        </motion.a>
+        {/* Beyond Work avatar shortcut */}
+        <div className="hidden lg:flex items-center gap-3">
+          <motion.button
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1, type: "spring", stiffness: 200 }}
+            onClick={() => handleClick("#beyond-work")}
+            whileHover={{ scale: 1.15, rotate: 5 }}
+            whileTap={{ scale: 0.9 }}
+            className="relative group"
+            title="Life Outside the Terminal"
+          >
+            <div className="w-9 h-9 rounded-full overflow-hidden ring-2 ring-accent/50 group-hover:ring-accent transition-all duration-300">
+              <img src={lifestyleImage} alt="Beyond work" className="w-full h-full object-cover" />
+            </div>
+            {/* Pulse ring */}
+            <motion.div
+              className="absolute inset-0 rounded-full border-2 border-accent/40"
+              animate={{ scale: [1, 1.5, 1], opacity: [0.6, 0, 0.6] }}
+              transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+            />
+            {/* Tooltip */}
+            <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap text-[10px] font-medium px-2 py-0.5 rounded-md bg-accent text-accent-foreground opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+              Beyond Work ✨
+            </span>
+          </motion.button>
+
+          <motion.a
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1 }}
+            whileHover={{ scale: 1.05, boxShadow: "0 4px 15px hsl(16 84% 62% / 0.3)" }}
+            whileTap={{ scale: 0.95 }}
+            href="/resume_anesh.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={cn(
+              "inline-flex items-center px-5 py-2 rounded-full text-sm font-medium transition-all",
+              "bg-accent text-accent-foreground hover:bg-coral-hover"
+            )}
+          >
+            Resume
+          </motion.a>
+        </div>
 
         {/* Mobile hamburger */}
         <motion.button
