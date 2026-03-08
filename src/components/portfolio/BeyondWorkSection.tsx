@@ -1,20 +1,24 @@
 import { motion } from "framer-motion";
-import { Camera, Music, Car, Globe, Dumbbell, UtensilsCrossed, Gamepad2, Instagram } from "lucide-react";
+import { Camera, Music, Car, Globe, Dumbbell, UtensilsCrossed, Gamepad2, Instagram, Volleyball, Sparkles, Plane } from "lucide-react";
 import lifestyleImage from "@/assets/lifestyle-anesh.jpg";
 
-const interests = [
-  { icon: Dumbbell, label: "Gym, Volleyball & Yoga" },
-  { icon: UtensilsCrossed, label: "Indian Cuisine" },
-  { icon: Car, label: "Cars & Drives" },
-  { icon: Camera, label: "FPV Drones" },
-  { icon: Music, label: "Tamil Music" },
-  { icon: Globe, label: "Travel" },
-  { icon: Gamepad2, label: "Chess" },
+const fitnessItems = [
+  { icon: Dumbbell, label: "Gym & Fitness", emoji: "💪" },
+  { icon: Volleyball, label: "Volleyball", emoji: "🏐" },
+  { icon: Sparkles, label: "Advanced Yoga", emoji: "🧘" },
+  { icon: Gamepad2, label: "Chess", emoji: "♟️" },
+];
+
+const passionItems = [
+  { icon: UtensilsCrossed, label: "Indian Cuisine", emoji: "🍛" },
+  { icon: Music, label: "Tamil Music", emoji: "🎵" },
+  { icon: Camera, label: "FPV Drones", emoji: "🚁" },
+  { icon: Car, label: "Cars & Drives", emoji: "🏎️" },
+  { icon: Globe, label: "Travel", emoji: "✈️" },
 ];
 
 const BeyondWorkSection = () => (
   <section id="beyond-work" className="py-24 relative overflow-hidden">
-    {/* Subtle background */}
     <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, hsl(220 25% 10%) 0%, hsl(220 30% 8%) 100%)" }} />
 
     <div className="container relative z-10">
@@ -55,14 +59,12 @@ const BeyondWorkSection = () => (
               alt="Anesh beyond work"
               className="w-full h-[420px] object-cover object-top"
             />
-            {/* Gradient overlay */}
             <div
               className="absolute inset-0"
               style={{ background: "linear-gradient(180deg, transparent 50%, hsl(220 30% 8% / 0.7) 100%)" }}
             />
           </motion.div>
 
-          {/* Decorative accent */}
           <motion.div
             className="absolute -bottom-3 -right-3 w-24 h-24 rounded-2xl -z-10"
             style={{ background: "hsl(16 84% 62% / 0.15)", border: "1px solid hsl(16 84% 62% / 0.2)" }}
@@ -79,50 +81,92 @@ const BeyondWorkSection = () => (
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
           <p className="text-white/70 text-lg leading-relaxed mb-6">
-            When I'm not analyzing data or building AI agents, I hit the gym regularly, play volleyball, practice advanced yoga, and enjoy a good chess match. 
-            I love exploring new food — especially Indian cuisine — and I'm a huge fan of South Indian (Tamil) music. 
-            On weekends, you'll find me flying FPV drones, cruising scenic roads, or discovering hidden gems in new cities.
+            When I'm not analyzing data or building AI agents, I'm all about staying active and exploring life.
+            I love discovering new food spots — especially authentic Indian cuisine — and South Indian (Tamil) music is always on repeat.
           </p>
 
-          <a
+          {/* Fitness & Sports */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-4"
+          >
+            <h3 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "hsl(16 84% 70%)" }}>
+              🏋️ Fitness & Sports
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {fitnessItems.map(({ label, emoji }, i) => (
+                <motion.span
+                  key={label}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.2 + i * 0.08 }}
+                  whileHover={{ scale: 1.1, y: -3 }}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-sm font-medium cursor-default border"
+                  style={{
+                    background: "linear-gradient(135deg, hsl(16 84% 62% / 0.12), hsl(16 84% 62% / 0.05))",
+                    borderColor: "hsl(16 84% 62% / 0.25)",
+                    color: "hsl(16 84% 85%)",
+                  }}
+                >
+                  <span>{emoji}</span> {label}
+                </motion.span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Passions & Hobbies */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.15 }}
+            className="mb-6"
+          >
+            <h3 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: "hsl(200 80% 70%)" }}>
+              🎯 Passions & Hobbies
+            </h3>
+            <div className="flex flex-wrap gap-2">
+              {passionItems.map(({ label, emoji }, i) => (
+                <motion.span
+                  key={label}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.3 + i * 0.08 }}
+                  whileHover={{ scale: 1.1, y: -3 }}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-sm font-medium cursor-default border"
+                  style={{
+                    background: "linear-gradient(135deg, hsl(200 80% 55% / 0.12), hsl(200 80% 55% / 0.05))",
+                    borderColor: "hsl(200 80% 55% / 0.25)",
+                    color: "hsl(200 80% 85%)",
+                  }}
+                >
+                  <span>{emoji}</span> {label}
+                </motion.span>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Instagram CTA */}
+          <motion.a
             href="https://www.instagram.com/a.n.e.s.h_t/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold mb-8 transition-all hover:scale-105"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full text-sm font-bold shadow-lg transition-shadow hover:shadow-xl"
             style={{
               background: "linear-gradient(135deg, hsl(340 75% 55%), hsl(25 90% 55%), hsl(45 90% 55%))",
               color: "white",
+              boxShadow: "0 4px 20px hsl(25 90% 55% / 0.3)",
             }}
           >
-            <Instagram className="w-4 h-4" />
-            Follow me on Instagram
-          </a>
-
-          <div className="grid grid-cols-2 gap-3">
-            {interests.map(({ icon: Icon, label }, i) => (
-              <motion.div
-                key={label}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: 0.3 + i * 0.1 }}
-                whileHover={{ scale: 1.05, y: -4 }}
-                className="flex items-center gap-3 px-4 py-3 rounded-xl border cursor-default"
-                style={{
-                  background: "hsl(0 0% 100% / 0.03)",
-                  borderColor: "hsl(0 0% 100% / 0.08)",
-                }}
-              >
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
-                  style={{ background: "hsl(16 84% 62% / 0.12)" }}
-                >
-                  <Icon className="w-5 h-5" style={{ color: "hsl(16 84% 62%)" }} />
-                </div>
-                <span className="text-white/80 text-sm font-medium">{label}</span>
-              </motion.div>
-            ))}
-          </div>
+            <Instagram className="w-5 h-5" />
+            Follow my adventures on Instagram
+          </motion.a>
         </motion.div>
       </div>
     </div>
