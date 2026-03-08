@@ -100,8 +100,8 @@ const ExperienceSection = () => (
 
                   {/* Mobile logo */}
                   <div className="flex md:hidden items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center overflow-hidden">
-                      <img src={exp.logo} alt={exp.company} className="w-7 h-7 object-contain" />
+                    <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center overflow-hidden">
+                      <img src={exp.logo} alt={exp.company} className="w-9 h-9 object-contain" />
                     </div>
                     <div>
                       <p className="text-accent font-semibold text-sm">{exp.company}</p>
