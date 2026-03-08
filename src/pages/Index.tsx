@@ -1,20 +1,18 @@
-import HeroSection from "@/components/home/HeroSection";
-import TrustBadges from "@/components/home/TrustBadges";
-import ServicesSection from "@/components/home/ServicesSection";
-import StatsSection from "@/components/home/StatsSection";
-import HowItWorks from "@/components/home/HowItWorks";
-import TestimonialsSection from "@/components/home/TestimonialsSection";
-import CTASection from "@/components/home/CTASection";
+import HeroSection from "@/components/portfolio/HeroSection";
+import AboutSection from "@/components/portfolio/AboutSection";
+import ExperienceSection from "@/components/portfolio/ExperienceSection";
+import ProjectsSection from "@/components/portfolio/ProjectsSection";
+import SkillsSection from "@/components/portfolio/SkillsSection";
+import ContactSection from "@/components/portfolio/ContactSection";
 
 const Index = () => (
   <>
     <HeroSection />
-    <ServicesSection />
-    <TrustBadges />
-    <StatsSection />
-    <HowItWorks />
-    <TestimonialsSection />
-    <CTASection />
+    <AboutSection />
+    <ExperienceSection />
+    <ProjectsSection />
+    <SkillsSection />
+    <ContactSection />
   </>
 );
 
