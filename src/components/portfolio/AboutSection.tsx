@@ -33,10 +33,6 @@ const AboutSection = () => (
         </h2>
         <div className="w-16 h-1 bg-gradient-warm rounded-full mb-10" />
 
-        <p className="text-xl md:text-2xl font-semibold text-foreground mb-4">
-          Hi, I'm Anesh Thangaraj.
-        </p>
-
         {/* Tags */}
         <div className="flex flex-wrap gap-2 mb-8">
           {tags.map((tag) => (
