@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Calendar, MapPin, BookOpen } from "lucide-react";
+import { GraduationCap, Calendar, MapPin, BookOpen, ExternalLink, ShieldCheck } from "lucide-react";
 import BackgroundShapes from "./BackgroundShapes";
 import logoGwu from "@/assets/logo-gwu.png";
 import logoVit from "@/assets/logo-vit.png";
