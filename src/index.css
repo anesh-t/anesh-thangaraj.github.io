@@ -57,7 +57,11 @@
     --gradient-soft: linear-gradient(135deg, hsl(180 20% 93%), hsl(220 14% 96%));
     --gradient-vibrant: linear-gradient(135deg, hsl(270 60% 60%), hsl(16 84% 62%));
     --gradient-teal: linear-gradient(135deg, hsl(180 33% 24%), hsl(160 60% 45%));
-    --gradient-section-alt: linear-gradient(180deg, hsl(220 20% 97%), hsl(220 14% 94%));
+    --gradient-section-alt: linear-gradient(180deg, hsl(220 25% 95%), hsl(200 20% 93%));
+    --gradient-section-warm: linear-gradient(135deg, hsl(20 60% 97%), hsl(38 50% 96%));
+    --gradient-section-cool: linear-gradient(135deg, hsl(200 30% 96%), hsl(220 25% 95%));
+    --gradient-section-teal: linear-gradient(135deg, hsl(170 25% 96%), hsl(190 20% 94%));
+    --gradient-section-lavender: linear-gradient(135deg, hsl(250 30% 97%), hsl(220 25% 95%));
 
     --shadow-card: 0 4px 24px -4px hsl(220 25% 10% / 0.06);
     --shadow-card-hover: 0 16px 40px -8px hsl(220 25% 10% / 0.12);
@@ -152,6 +156,18 @@
   }
   .bg-section-alt {
     background-image: var(--gradient-section-alt);
+  }
+  .bg-section-warm {
+    background-image: var(--gradient-section-warm);
+  }
+  .bg-section-cool {
+    background-image: var(--gradient-section-cool);
+  }
+  .bg-section-teal {
+    background-image: var(--gradient-section-teal);
+  }
+  .bg-section-lavender {
+    background-image: var(--gradient-section-lavender);
   }
   .shadow-card {
     box-shadow: var(--shadow-card);

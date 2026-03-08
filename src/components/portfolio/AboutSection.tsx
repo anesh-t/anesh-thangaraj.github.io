@@ -15,7 +15,7 @@ const languages = [
 ];
 
 const AboutSection = () => (
-  <section id="about" className="py-20 md:py-28 bg-background relative overflow-hidden">
+  <section id="about" className="py-20 md:py-28 bg-section-warm relative overflow-hidden">
     <BackgroundShapes variant="circles" />
     <div className="container relative z-10">
       <motion.div
