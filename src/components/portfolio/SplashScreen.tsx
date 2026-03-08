@@ -5,40 +5,35 @@ const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
   const [phase, setPhase] = useState<"logo" | "exit">("logo");
 
   useEffect(() => {
+    // Play a subtle click sound on load
     try {
       const ctx = new AudioContext();
-      const now = ctx.currentTime;
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      osc.frequency.setValueAtTime(880, ctx.currentTime);
+      osc.type = "sine";
+      gain.gain.setValueAtTime(0.08, ctx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.3);
+      osc.start(ctx.currentTime);
+      osc.stop(ctx.currentTime + 0.3);
 
-      // Soft ambient pad — warm rising chord
-      const notes = [261.6, 329.6, 392, 523.3]; // C4, E4, G4, C5
-      notes.forEach((freq, i) => {
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(freq, now);
-        gain.gain.setValueAtTime(0, now + i * 0.12);
-        gain.gain.linearRampToValueAtTime(0.04, now + i * 0.12 + 0.3);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + 1.8);
-        osc.start(now + i * 0.12);
-        osc.stop(now + 2);
-      });
-
-      // Gentle shimmer on top
-      const shimmer = ctx.createOscillator();
-      const shimmerGain = ctx.createGain();
-      shimmer.connect(shimmerGain);
-      shimmerGain.connect(ctx.destination);
-      shimmer.type = "triangle";
-      shimmer.frequency.setValueAtTime(1046.5, now + 0.5); // C6
-      shimmerGain.gain.setValueAtTime(0, now + 0.5);
-      shimmerGain.gain.linearRampToValueAtTime(0.02, now + 0.7);
-      shimmerGain.gain.exponentialRampToValueAtTime(0.001, now + 1.6);
-      shimmer.start(now + 0.5);
-      shimmer.stop(now + 1.8);
+      // Second tone for a "ding" effect
+      setTimeout(() => {
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.connect(gain2);
+        gain2.connect(ctx.destination);
+        osc2.frequency.setValueAtTime(1320, ctx.currentTime);
+        osc2.type = "sine";
+        gain2.gain.setValueAtTime(0.06, ctx.currentTime);
+        gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+        osc2.start(ctx.currentTime);
+        osc2.stop(ctx.currentTime + 0.4);
+      }, 150);
     } catch (e) {
-      // Audio not supported
+      // Audio not supported, skip
     }
 
     const timer = setTimeout(() => setPhase("exit"), 1800);
