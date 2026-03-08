@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import GlobalSoundEffects from "@/components/GlobalSoundEffects";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
