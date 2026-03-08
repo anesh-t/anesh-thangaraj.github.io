@@ -1,14 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import { playSplashSound } from "@/lib/sounds";
 
 const SplashScreen = ({ onComplete }: { onComplete: () => void }) => {
   const [phase, setPhase] = useState<"logo" | "exit">("logo");
 
   useEffect(() => {
-    // Play a subtle click sound on load
-    try {
-      const ctx = new AudioContext();
-      const osc = ctx.createOscillator();
+    playSplashSound();
       const gain = ctx.createGain();
       osc.connect(gain);
       gain.connect(ctx.destination);
