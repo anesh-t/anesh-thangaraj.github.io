@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Code2, Github, Linkedin, Mail, Terminal } from "lucide-react";
 
 const Footer = () => (
   <footer className="bg-brand-deep text-white py-8">
