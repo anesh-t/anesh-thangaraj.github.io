@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Briefcase } from "lucide-react";
+import { Briefcase, ExternalLink } from "lucide-react";
 import BackgroundShapes from "./BackgroundShapes";
 import logoImf from "@/assets/logo-imf.png";
 import logoGwu from "@/assets/logo-gwu.png";
@@ -14,6 +14,7 @@ const experiences = [
     location: "Washington, DC",
     logo: logoImf,
     color: "from-blue-500 to-cyan-500",
+    link: "https://www.linkedin.com/posts/anesh-t_imf-annualmeetings2025-externship-activity-7357904457663221760-PbXD?utm_source=share&utm_medium=member_desktop&rcm=ACoAADLgq_gB5geiRrJOyPnTiCbtDlCNZYds1p8",
     bullets: [
       "Built Power BI dashboards and Excel trackers for multi-year planning and Annual/Spring Meetings, improving reporting accuracy by 30%.",
       "Developed SQL-based validation workflows (completeness checks, conflict detection, reconciliation) to reduce scheduling/approval errors.",
@@ -28,6 +29,7 @@ const experiences = [
     location: "Washington, DC",
     logo: logoGwu,
     color: "from-indigo-500 to-violet-500",
+    link: "https://www.linkedin.com/posts/anesh-t_datavisualization-analytics-teachingassistant-activity-7291687598748581888-nEec?utm_source=share&utm_medium=member_desktop&rcm=ACoAADLgq_gB5geiRrJOyPnTiCbtDlCNZYds1p8",
     bullets: [
       "Delivered hands-on guidance for graduate-level analytics coursework using Tableau for 40+ students.",
       "Evaluated student dashboards using Tableau and Python (Pandas) to verify KPI relevance and insight clarity.",
@@ -40,6 +42,7 @@ const experiences = [
     location: "Tirupur, India",
     logo: logoThangam,
     color: "from-emerald-500 to-teal-500",
+    link: "https://www.linkedin.com/in/anesh-t/",
     bullets: [
       "Designed SQL-driven Tableau and Excel dashboards for a $5M+ loan portfolio with visibility into delinquency trends and approval status.",
       "Engineered data validation and reconciliation workflows improving reporting accuracy by 20% and reducing loan cycle time by 25%.",
@@ -52,6 +55,7 @@ const experiences = [
     location: "Vellore, India",
     logo: logoVit,
     color: "from-rose-500 to-pink-500",
+    link: "https://www.linkedin.com/posts/anesh-t_frontiers-analyzing-classification-and-activity-7312910389581594626-QPOq?utm_source=share&utm_medium=member_desktop&rcm=ACoAADLgq_gB5geiRrJOyPnTiCbtDlCNZYds1p8",
     bullets: [
       "Contributed to published research on ML-based diabetes prediction in Frontiers in Artificial Intelligence (2024).",
       "Applied Explainable AI techniques (LIME, SHAP) to interpret model decisions and highlight key risk factors.",
@@ -113,19 +117,20 @@ const ExperienceSection = () => (
                       <img src={exp.logo} alt={exp.company} className="w-11 h-11 object-contain" />
                     </motion.div>
                     <div>
-                      <p className="text-accent font-semibold text-sm">{exp.company}</p>
+                      <a href={exp.link} target="_blank" rel="noopener noreferrer" className="text-accent font-semibold text-sm inline-flex items-center gap-1 hover:underline"><span>{exp.company}</span><ExternalLink className="w-3 h-3" /></a>
                     </div>
                   </div>
 
                   <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                     <div>
                       <h3 className="font-bold text-foreground group-hover:text-accent transition-colors duration-300">{exp.role}</h3>
-                      <p className="text-accent font-medium text-sm hidden md:flex items-center gap-1.5">
+                      <a href={exp.link} target="_blank" rel="noopener noreferrer" className="text-accent font-medium text-sm hidden md:flex items-center gap-1.5 hover:underline">
                         <motion.div whileHover={{ rotate: 15 }} transition={{ type: "spring" }}>
                           <Briefcase className="w-3.5 h-3.5" />
                         </motion.div>
                         {exp.company}
-                      </p>
+                        <ExternalLink className="w-3 h-3 ml-1" />
+                      </a>
                     </div>
                     <div className="text-right text-xs text-muted-foreground">
                       <p className="font-medium">{exp.period}</p>

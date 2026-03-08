@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Calendar, MapPin, BookOpen } from "lucide-react";
+import { GraduationCap, Calendar, MapPin, BookOpen, ExternalLink, ShieldCheck } from "lucide-react";
 import BackgroundShapes from "./BackgroundShapes";
 import logoGwu from "@/assets/logo-gwu.png";
 import logoVit from "@/assets/logo-vit.png";
@@ -14,6 +14,8 @@ const education = [
     gpa: "3.74 / 4.0",
     logo: logoGwu,
     color: "from-indigo-500 to-blue-500",
+    link: "https://registrar.gwu.edu/cecredentials-validation",
+    credential: "Credential ID CeDiD:26K2LV6AADJT  •  Name: AN",
     honors: [
       "GW Business Fellowship Award — Merit-based, ~$22,000 (35% tuition)",
       "Community Choice Award – Fall 2025 GenAI Case Competition",
@@ -32,6 +34,8 @@ const education = [
     location: "Vellore, India",
     logo: logoVit,
     color: "from-rose-500 to-pink-500",
+    link: "https://www.linkedin.com/in/anesh-t/",
+    credential: null,
     honors: [],
     coursework: [
       "Data Structures & Algorithms", "Object-Oriented Programming",
@@ -81,9 +85,17 @@ const EducationSection = () => (
 
                 <div className="flex-1 space-y-4">
                   <div>
-                    <h3 className="text-xl font-bold text-foreground group-hover:text-accent transition-colors duration-300">{edu.degree}</h3>
-                    <p className="text-base text-accent font-semibold">{edu.school}</p>
+                    <a href={edu.link} target="_blank" rel="noopener noreferrer" className="text-xl font-bold text-foreground group-hover:text-accent transition-colors duration-300 inline-flex items-center gap-1.5 hover:underline cursor-pointer">
+                      {edu.degree} <ExternalLink className="w-4 h-4 shrink-0" />
+                    </a>
+                    <a href={edu.link} target="_blank" rel="noopener noreferrer" className="text-base text-accent font-semibold hover:underline inline-flex items-center gap-1">{edu.school}</a>
                     <p className="text-sm text-muted-foreground">{edu.department}</p>
+                    {edu.credential && (
+                      <a href={edu.link} target="_blank" rel="noopener noreferrer" className="mt-1 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold border border-emerald-500/20 hover:bg-emerald-500/20 transition-colors cursor-pointer">
+                        <ShieldCheck className="w-3.5 h-3.5" />
+                        {edu.credential}
+                      </a>
+                    )}
                     <div className="flex flex-wrap items-center gap-4 mt-2 text-sm text-muted-foreground">
                       <motion.span whileHover={{ scale: 1.05 }} className="inline-flex items-center gap-1.5">
                         <Calendar className="w-3.5 h-3.5" /> {edu.period}
