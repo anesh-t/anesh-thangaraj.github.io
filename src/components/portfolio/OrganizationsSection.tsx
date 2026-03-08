@@ -63,8 +63,8 @@ const OrganizationsSection = () => (
               <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${org.color}`} />
 
               <div className="flex items-start gap-4 mb-4">
-                <div className="w-14 h-14 rounded-xl bg-muted border border-border flex items-center justify-center overflow-hidden shrink-0">
-                  <img src={org.logo} alt={org.organization} className="w-9 h-9 object-contain" />
+                <div className="w-18 h-18 rounded-xl bg-muted border border-border flex items-center justify-center overflow-hidden shrink-0" style={{ width: '4.5rem', height: '4.5rem' }}>
+                  <img src={org.logo} alt={org.organization} className="w-12 h-12 object-contain" />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-bold text-foreground group-hover:text-accent transition-colors">{org.role}</h3>

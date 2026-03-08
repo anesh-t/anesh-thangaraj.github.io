@@ -68,8 +68,8 @@ const EducationSection = () => (
               <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${edu.color}`} />
 
               <div className="flex flex-col md:flex-row md:items-start gap-5">
-                <div className="shrink-0 w-16 h-16 rounded-2xl bg-muted border border-border flex items-center justify-center overflow-hidden">
-                  <img src={edu.logo} alt={edu.school} className="w-11 h-11 object-contain" />
+                <div className="shrink-0 w-20 h-20 rounded-2xl bg-muted border border-border flex items-center justify-center overflow-hidden">
+                  <img src={edu.logo} alt={edu.school} className="w-14 h-14 object-contain" />
                 </div>
 
                 <div className="flex-1 space-y-4">

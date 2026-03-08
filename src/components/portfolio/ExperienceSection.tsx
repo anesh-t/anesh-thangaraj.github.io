@@ -84,11 +84,11 @@ const ExperienceSection = () => (
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="relative md:pl-20"
+                className="relative md:pl-24"
               >
                 {/* Timeline logo */}
-                <div className="absolute left-0 top-4 w-16 h-16 rounded-2xl bg-card border border-border shadow-card hidden md:flex items-center justify-center overflow-hidden">
-                  <img src={exp.logo} alt={exp.company} className="w-10 h-10 object-contain" />
+                <div className="absolute left-0 top-4 w-20 h-20 rounded-2xl bg-card border border-border shadow-card hidden md:flex items-center justify-center overflow-hidden">
+                  <img src={exp.logo} alt={exp.company} className="w-14 h-14 object-contain" />
                 </div>
 
                 <motion.div
@@ -100,8 +100,8 @@ const ExperienceSection = () => (
 
                   {/* Mobile logo */}
                   <div className="flex md:hidden items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-lg bg-muted flex items-center justify-center overflow-hidden">
-                      <img src={exp.logo} alt={exp.company} className="w-7 h-7 object-contain" />
+                    <div className="w-12 h-12 rounded-lg bg-muted flex items-center justify-center overflow-hidden">
+                      <img src={exp.logo} alt={exp.company} className="w-9 h-9 object-contain" />
                     </div>
                     <div>
                       <p className="text-accent font-semibold text-sm">{exp.company}</p>
