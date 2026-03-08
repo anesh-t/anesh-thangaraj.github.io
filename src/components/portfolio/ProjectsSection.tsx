@@ -32,7 +32,7 @@ const featuredProjects: Project[] = [
       "Orchestrates RAG, Text-to-SQL, and agentic workflows for client-ready insights",
       "Team: Carissa Paul, Rachel Aska, Isheanesu Chiworeso, Anesh Thangaraj",
     ],
-    github: "https://github.com/anesh-t",
+    github: "https://github.com/anesh-t/FinSight-Executive-AI-Intelligent-Financial-Analysis-Agent",
   },
   {
     title: "SEC Financial Analytics Data Warehouse & Visualization",
