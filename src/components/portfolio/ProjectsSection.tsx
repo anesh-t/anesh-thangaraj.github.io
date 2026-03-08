@@ -1,11 +1,15 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Trophy } from "lucide-react";
+import projectCfo from "@/assets/project-cfo-assistant.jpg";
+import projectSec from "@/assets/project-sec-analytics.jpg";
+import projectFundmate from "@/assets/project-fundmate.jpg";
 
 const projects = [
   {
     title: "CFO Assistant – AI-Enabled Analytics & Decision Support",
     award: "GW AI Case Competition – Winners",
     period: "Sep 2025 – Dec 2025",
+    image: projectCfo,
     description:
       "End-to-end AI platform for CFO-style financial analysis across 5 large-cap companies, integrating structured financial data in PostgreSQL + Pgvector with unstructured SEC filings and a Neo4j knowledge graph.",
     tech: ["Python", "LangChain", "Pgvector", "Neo4j", "FastAPI", "AWS Bedrock", "SageMaker"],
@@ -19,6 +23,7 @@ const projects = [
   {
     title: "SEC Financial Analytics Data Warehouse & Visualization",
     period: "Oct 2024 – Nov 2024",
+    image: projectSec,
     description:
       "Cloud-hosted analytics warehouse on AWS EC2 (PostgreSQL), ingesting and normalizing 480K+ SEC records with ETL transformations and Tableau dashboards.",
     tech: ["AWS EC2", "PostgreSQL", "SQL", "Python", "Tableau"],
@@ -31,6 +36,7 @@ const projects = [
   {
     title: "FundMate – Internal Copilot + RAG Assistant",
     period: "Jul 2025 – Dec 2025",
+    image: projectFundmate,
     description:
       "Built at the IMF: an LLM + RAG powered internal assistant enabling natural-language access to structured data and 10+ institutional documentation sources.",
     tech: ["RAG", "LLM", "Python", "Power BI", "SQL"],
@@ -63,46 +69,58 @@ const ProjectsSection = () => (
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.15 }}
-              className="group p-6 rounded-xl bg-card border border-border shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all flex flex-col"
+              className="group rounded-xl bg-card border border-border shadow-card hover:shadow-card-hover hover:-translate-y-1 transition-all flex flex-col overflow-hidden"
             >
-              {project.award && (
-                <div className="flex items-center gap-1.5 text-amber text-xs font-semibold mb-3">
-                  <Trophy className="w-3.5 h-3.5" />
-                  {project.award}
-                </div>
-              )}
-              <h3 className="font-bold text-foreground mb-1 group-hover:text-accent transition-colors">
-                {project.title}
-              </h3>
-              <p className="text-xs text-muted-foreground mb-3">{project.period}</p>
-              <p className="text-sm text-muted-foreground mb-4 flex-1">{project.description}</p>
-
-              <ul className="space-y-1.5 text-xs text-muted-foreground mb-4">
-                {project.highlights.map((h, j) => (
-                  <li key={j} className="flex gap-1.5">
-                    <span className="text-accent">✓</span> {h}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex flex-wrap gap-1.5 mb-4">
-                {project.tech.map((t) => (
-                  <span key={t} className="px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground text-xs">
-                    {t}
-                  </span>
-                ))}
+              {/* Project Thumbnail */}
+              <div className="relative h-48 overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                {project.award && (
+                  <div className="absolute top-3 left-3 flex items-center gap-1.5 text-amber bg-card/90 backdrop-blur-sm text-xs font-semibold px-3 py-1 rounded-full">
+                    <Trophy className="w-3.5 h-3.5" />
+                    {project.award}
+                  </div>
+                )}
               </div>
 
-              {project.github && (
-                <a
-                  href={project.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-sm text-accent hover:underline mt-auto"
-                >
-                  View on GitHub <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-              )}
+              <div className="p-6 flex flex-col flex-1">
+                <h3 className="font-bold text-foreground mb-1 group-hover:text-accent transition-colors">
+                  {project.title}
+                </h3>
+                <p className="text-xs text-muted-foreground mb-3">{project.period}</p>
+                <p className="text-sm text-muted-foreground mb-4 flex-1">{project.description}</p>
+
+                <ul className="space-y-1.5 text-xs text-muted-foreground mb-4">
+                  {project.highlights.map((h, j) => (
+                    <li key={j} className="flex gap-1.5">
+                      <span className="text-accent">✓</span> {h}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="flex flex-wrap gap-1.5 mb-4">
+                  {project.tech.map((t) => (
+                    <span key={t} className="px-2 py-0.5 rounded-full bg-secondary text-secondary-foreground text-xs">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm text-accent hover:underline mt-auto"
+                  >
+                    View on GitHub <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                )}
+              </div>
             </motion.div>
           ))}
         </div>

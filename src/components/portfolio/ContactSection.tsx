@@ -25,6 +25,8 @@ const ContactSection = () => (
             { icon: Phone, label: "(571) 237-8970", href: "tel:+15712378970" },
             { icon: MapPin, label: "Arlington, VA (Open to Relocate)", href: "#" },
             { icon: Linkedin, label: "linkedin.com/in/anesh-t", href: "https://linkedin.com/in/anesh-t" },
+            { icon: Code2, label: "HackerRank Profile", href: "https://www.hackerrank.com/profile/aneshraj14" },
+            { icon: Terminal, label: "LeetCode Profile", href: "https://leetcode.com/u/Anesh_T/" },
           ].map(({ icon: Icon, label, href }) => (
             <a
               key={label}

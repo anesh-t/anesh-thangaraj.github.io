@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowDown, Code2, Github, Linkedin, Mail, Terminal } from "lucide-react";
 import heroImage from "@/assets/hero-dogs.jpg";
 
 const HeroSection = () => {
