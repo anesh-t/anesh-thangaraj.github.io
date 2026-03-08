@@ -47,8 +47,8 @@ const VolunteeringSection = () => (
               <img src={volunteerImg} alt="IMF Spring Meetings" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-t from-card via-card/40 to-transparent" />
               <div className="absolute bottom-4 left-6 flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-card/90 backdrop-blur-md border border-border flex items-center justify-center">
-                  <img src={logoImf} alt="IMF" className="w-8 h-8 object-contain" />
+                <div className="w-16 h-16 rounded-xl bg-card/90 backdrop-blur-md border border-border flex items-center justify-center">
+                  <img src={logoImf} alt="IMF" className="w-11 h-11 object-contain" />
                 </div>
                 <div>
                   <p className="font-bold text-foreground text-lg">{v.organization}</p>
