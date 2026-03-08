@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Database, Brain, Cloud, BarChart3, Code, Users, ExternalLink, BookOpen, Eye, Download, TrendingUp, Quote } from "lucide-react";
+import { Database, Brain, Cloud, BarChart3, Code, Users } from "lucide-react";
 
 const skillCategories = [
   {
