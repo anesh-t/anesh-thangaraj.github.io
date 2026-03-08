@@ -37,7 +37,7 @@ const organizations = [
 ];
 
 const OrganizationsSection = () => (
-  <section id="organizations" className="py-20 md:py-28 bg-background relative overflow-hidden">
+  <section id="organizations" className="py-20 md:py-28 bg-section-lavender relative overflow-hidden">
     <BackgroundShapes variant="crosses" />
     <div className="container relative z-10">
       <motion.div
