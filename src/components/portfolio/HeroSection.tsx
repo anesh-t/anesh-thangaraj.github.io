@@ -1,31 +1,83 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowDown, Code2, Github, Linkedin, Mail, Terminal, Sparkles } from "lucide-react";
-import heroImage from "@/assets/hero-bg.jpg";
+import { useEffect, useRef } from "react";
 
 const HeroSection = () => {
+  const containerRef = useRef<HTMLElement>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
+
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      if (!containerRef.current) return;
+      const rect = containerRef.current.getBoundingClientRect();
+      mouseX.set((e.clientX - rect.left - rect.width / 2) / 15);
+      mouseY.set((e.clientY - rect.top - rect.height / 2) / 15);
+    };
+    window.addEventListener("mousemove", handleMove);
+    return () => window.removeEventListener("mousemove", handleMove);
+  }, [mouseX, mouseY]);
+
   const scrollToAbout = () => {
     document.querySelector("#about")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0">
-        <img src={heroImage} alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-black/50 to-transparent" />
-      </div>
+    <section ref={containerRef} className="relative min-h-screen flex items-center overflow-hidden">
+      {/* Animated gradient background */}
+      <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsl(220 30% 8%) 0%, hsl(220 25% 14%) 40%, hsl(180 20% 12%) 100%)" }} />
 
-      {/* Floating accent orbs */}
+      {/* Grid pattern overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: `linear-gradient(hsl(0 0% 100% / 0.1) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 100% / 0.1) 1px, transparent 1px)`,
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      {/* Cursor-following gradient orbs */}
       <motion.div
-        className="absolute top-20 right-20 w-72 h-72 rounded-full bg-accent/10 blur-3xl"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ repeat: Infinity, duration: 6, ease: "easeInOut" }}
+        className="absolute w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{
+          x: springX,
+          y: springY,
+          background: "radial-gradient(circle, hsl(16 84% 62% / 0.12), transparent 70%)",
+          top: "10%",
+          right: "10%",
+        }}
       />
       <motion.div
-        className="absolute bottom-32 left-10 w-48 h-48 rounded-full bg-primary/20 blur-3xl"
-        animate={{ scale: [1, 1.3, 1], opacity: [0.2, 0.4, 0.2] }}
-        transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
+        className="absolute w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{
+          x: springX,
+          y: springY,
+          background: "radial-gradient(circle, hsl(180 33% 30% / 0.15), transparent 70%)",
+          bottom: "5%",
+          left: "5%",
+        }}
       />
+
+      {/* Floating particles */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 rounded-full"
+          style={{
+            background: i % 2 === 0 ? "hsl(16 84% 62% / 0.5)" : "hsl(180 33% 50% / 0.4)",
+            top: `${15 + i * 14}%`,
+            left: `${10 + i * 15}%`,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            opacity: [0.3, 0.8, 0.3],
+            scale: [1, 1.5, 1],
+          }}
+          transition={{ repeat: Infinity, duration: 3 + i * 0.5, delay: i * 0.4, ease: "easeInOut" }}
+        />
+      ))}
 
       <div className="container relative z-10">
         <div className="max-w-3xl">
@@ -38,7 +90,12 @@ const HeroSection = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.3 }}
-              className="inline-flex items-center gap-2 bg-accent/20 text-accent backdrop-blur-md px-5 py-2 rounded-full text-sm font-semibold mb-8 border border-accent/30"
+              className="inline-flex items-center gap-2 px-5 py-2 rounded-full text-sm font-semibold mb-8 border"
+              style={{
+                background: "hsl(16 84% 62% / 0.1)",
+                borderColor: "hsl(16 84% 62% / 0.3)",
+                color: "hsl(16 84% 70%)",
+              }}
             >
               <Sparkles className="w-4 h-4" />
               Open to Opportunities
@@ -57,7 +114,7 @@ const HeroSection = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
-                className="block text-gradient-warm font-bold"
+                className="block font-bold"
                 style={{ backgroundImage: "linear-gradient(135deg, hsl(16 84% 62%), hsl(38 92% 60%))", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}
               >
                 Anesh Thangaraj
@@ -76,7 +133,7 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
-              className="text-base text-white/55 mb-10 max-w-xl leading-relaxed font-sans"
+              className="text-base text-white/45 mb-10 max-w-xl leading-relaxed font-sans"
             >
               Turning ambiguous business problems into decision-ready insights.
               <br />
@@ -104,7 +161,12 @@ const HeroSection = () => {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -2 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-12 h-12 rounded-xl border border-white/15 bg-white/5 backdrop-blur-md flex items-center justify-center hover:bg-accent hover:border-accent transition-all duration-300"
+                  className="w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300"
+                  style={{
+                    borderColor: "hsl(0 0% 100% / 0.1)",
+                    background: "hsl(0 0% 100% / 0.04)",
+                    backdropFilter: "blur(12px)",
+                  }}
                   aria-label={label}
                 >
                   <Icon className="w-5 h-5 text-white" />
@@ -118,7 +180,7 @@ const HeroSection = () => {
       {/* Scroll indicator */}
       <motion.button
         onClick={scrollToAbout}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/50 hover:text-accent transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/40 hover:text-accent transition-colors"
         animate={{ y: [0, 10, 0] }}
         transition={{ repeat: Infinity, duration: 2.5 }}
         aria-label="Scroll down"
