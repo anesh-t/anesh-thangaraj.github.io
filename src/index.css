@@ -157,6 +157,18 @@
   .bg-section-alt {
     background-image: var(--gradient-section-alt);
   }
+  .bg-section-warm {
+    background-image: var(--gradient-section-warm);
+  }
+  .bg-section-cool {
+    background-image: var(--gradient-section-cool);
+  }
+  .bg-section-teal {
+    background-image: var(--gradient-section-teal);
+  }
+  .bg-section-lavender {
+    background-image: var(--gradient-section-lavender);
+  }
   .shadow-card {
     box-shadow: var(--shadow-card);
   }
