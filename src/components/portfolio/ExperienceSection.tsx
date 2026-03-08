@@ -124,12 +124,13 @@ const ExperienceSection = () => (
                   <div className="flex flex-wrap items-start justify-between gap-2 mb-3">
                     <div>
                       <h3 className="font-bold text-foreground group-hover:text-accent transition-colors duration-300">{exp.role}</h3>
-                      <p className="text-accent font-medium text-sm hidden md:flex items-center gap-1.5">
+                      <a href={exp.link} target="_blank" rel="noopener noreferrer" className="text-accent font-medium text-sm hidden md:flex items-center gap-1.5 hover:underline">
                         <motion.div whileHover={{ rotate: 15 }} transition={{ type: "spring" }}>
                           <Briefcase className="w-3.5 h-3.5" />
                         </motion.div>
                         {exp.company}
-                      </p>
+                        <ExternalLink className="w-3 h-3 ml-1" />
+                      </a>
                     </div>
                     <div className="text-right text-xs text-muted-foreground">
                       <p className="font-medium">{exp.period}</p>
