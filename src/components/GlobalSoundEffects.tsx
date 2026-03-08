@@ -1,10 +1,6 @@
 import { useEffect } from "react";
-import { playClickSound, playHoverSound } from "@/lib/sounds";
+import { playClickSound } from "@/lib/sounds";
 
-/**
- * Attaches subtle click & hover sounds to all interactive elements globally.
- * Render once near the app root.
- */
 const GlobalSoundEffects = () => {
   useEffect(() => {
     const interactiveSelector =
@@ -17,31 +13,10 @@ const GlobalSoundEffects = () => {
       }
     };
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const el = target.closest(interactiveSelector);
-      if (el && !(el as any).__soundHovered) {
-        (el as any).__soundHovered = true;
-        playHoverSound();
-      }
-    };
-
-    const handleMouseOut = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const el = target.closest(interactiveSelector);
-      if (el) {
-        (el as any).__soundHovered = false;
-      }
-    };
-
     document.addEventListener("click", handleClick, true);
-    document.addEventListener("mouseover", handleMouseOver, true);
-    document.addEventListener("mouseout", handleMouseOut, true);
 
     return () => {
       document.removeEventListener("click", handleClick, true);
-      document.removeEventListener("mouseover", handleMouseOver, true);
-      document.removeEventListener("mouseout", handleMouseOut, true);
     };
   }, []);
 
