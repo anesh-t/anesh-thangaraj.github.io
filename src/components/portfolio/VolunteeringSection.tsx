@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Heart } from "lucide-react";
+import BackgroundShapes from "./BackgroundShapes";
 import volunteerImg from "@/assets/volunteer-imf.jpg";
 import logoImf from "@/assets/logo-imf.png";
 
@@ -21,8 +22,9 @@ const volunteer = [
 ];
 
 const VolunteeringSection = () => (
-  <section id="volunteering" className="py-20 md:py-28 bg-section-alt">
-    <div className="container">
+  <section id="volunteering" className="py-20 md:py-28 bg-section-alt relative overflow-hidden">
+    <BackgroundShapes variant="waves" />
+    <div className="container relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

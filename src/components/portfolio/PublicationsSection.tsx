@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { BookOpen, ExternalLink, Eye, Download, TrendingUp, Quote } from "lucide-react";
+import BackgroundShapes from "./BackgroundShapes";
 
 const metrics = [
   { icon: Quote, value: "26", label: "Citations", gradient: "from-violet-500 to-purple-500" },
@@ -10,8 +11,9 @@ const metrics = [
 ];
 
 const PublicationsSection = () => (
-  <section id="publications" className="py-20 md:py-28 bg-section-alt">
-    <div className="container">
+  <section id="publications" className="py-20 md:py-28 bg-section-alt relative overflow-hidden">
+    <BackgroundShapes variant="dots" />
+    <div className="container relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

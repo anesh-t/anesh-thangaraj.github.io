@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Users, ExternalLink } from "lucide-react";
+import BackgroundShapes from "./BackgroundShapes";
 import logoGwu from "@/assets/logo-gwu.png";
 import logoVit from "@/assets/logo-vit.png";
 
@@ -36,8 +37,9 @@ const organizations = [
 ];
 
 const OrganizationsSection = () => (
-  <section id="organizations" className="py-20 md:py-28 bg-background">
-    <div className="container">
+  <section id="organizations" className="py-20 md:py-28 bg-background relative overflow-hidden">
+    <BackgroundShapes variant="crosses" />
+    <div className="container relative z-10">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
