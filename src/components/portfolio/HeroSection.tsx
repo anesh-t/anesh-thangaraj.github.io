@@ -247,9 +247,10 @@ const HeroSection = () => {
 
             {/* Image container with hover */}
             <motion.div
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 200, damping: 15 }}
-              className="relative w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-2 cursor-pointer"
+              whileHover={{ scale: 1.08, rotate: 2 }}
+              animate={{ scale: [0.95, 1, 0.95], boxShadow: ["0 0 30px hsl(16 84% 62% / 0.2)", "0 0 60px hsl(16 84% 62% / 0.4)", "0 0 30px hsl(16 84% 62% / 0.2)"] }}
+              transition={{ type: "spring", stiffness: 200, damping: 15, scale: { repeat: Infinity, duration: 4, ease: "easeInOut" }, boxShadow: { repeat: Infinity, duration: 4, ease: "easeInOut" } }}
+              className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-2 cursor-pointer"
               style={{ borderColor: "hsl(16 84% 62% / 0.4)" }}
             >
               <img
@@ -257,7 +258,6 @@ const HeroSection = () => {
                 alt="Anesh Thangaraj"
                 className="w-full h-full object-cover object-top"
               />
-              {/* Subtle overlay gradient */}
               <div className="absolute inset-0 rounded-full" style={{ background: "linear-gradient(180deg, transparent 60%, hsl(220 30% 8% / 0.4) 100%)" }} />
             </motion.div>
 
