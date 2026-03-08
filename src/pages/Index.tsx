@@ -27,6 +27,7 @@ const Index = () => {
       <SkillsSection />
       <VolunteeringSection />
       <OrganizationsSection />
+      <BeyondWorkSection />
       <ContactSection />
     </>
   );
