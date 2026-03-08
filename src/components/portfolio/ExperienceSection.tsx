@@ -16,31 +16,6 @@ const experiences = [
     ],
   },
   {
-    role: "Volunteer Staff – Spring Meetings 2025",
-    company: "International Monetary Fund (IMF)",
-    period: "Apr 2025 · 1 month",
-    location: "Washington, DC",
-    icon: Heart,
-    bullets: [
-      "Managed front desk operations, greeting visitors, checking registrations, and directing attendees to sessions and events.",
-      "Supported attendee registration, information desks, and venue logistics for international delegates and media.",
-      "Collaborated with staff to uphold event security, emergency readiness, and VIP hospitality standards.",
-    ],
-  },
-  {
-    role: "Executive Vice President (Operations & Analytics)",
-    company: "GWU Graduate Consulting Club",
-    period: "Jan 2025 – Dec 2025",
-    location: "Washington, DC",
-    icon: Users,
-    bullets: [
-      "Led end-to-end operations for consulting workshops, case events, and speaker sessions (150+ attendees).",
-      "Coordinated speakers, alumni, logistics, and execution with minimal oversight.",
-      "Designed tracking and reporting workflows (Excel, dashboards) to analyze attendance, engagement trends, and operational bottlenecks.",
-      "Partnered with industry professionals and alumni to facilitate networking, mentorship, and panel discussions.",
-    ],
-  },
-  {
     role: "Graduate Teaching Assistant – Visualization for Analytics",
     company: "George Washington University",
     period: "Jan 2025 – Apr 2025",
@@ -73,18 +48,7 @@ const experiences = [
       "Applied Explainable AI techniques (LIME, SHAP) to interpret model decisions and highlight key risk factors.",
     ],
   },
-  {
-    role: "Core Committee Member – CSED",
-    company: "Center for Social and Entrepreneurship Development, VIT",
-    period: "Jan 2021 – Feb 2024",
-    location: "Vellore, India",
-    icon: Users,
-    bullets: [
-      "Contributed to social impact and entrepreneurship initiatives over 3+ years at VIT.",
-    ],
-  },
 ];
-
 const ExperienceSection = () => (
   <section id="experience" className="py-20 md:py-28 bg-muted">
     <div className="container">
