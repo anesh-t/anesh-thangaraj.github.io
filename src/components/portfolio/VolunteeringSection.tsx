@@ -69,7 +69,7 @@ const VolunteeringSection = () => (
                   <img src={logoImf} alt="IMF" className="w-14 h-14 object-contain" />
                 </motion.div>
                 <div>
-                  <p className="font-bold text-foreground text-lg">{v.organization}</p>
+                  <a href="https://www.linkedin.com/posts/anesh-t_imf-springmeetings2025-businessanalytics-ugcPost-7322686988120113152-jPbd?utm_source=share&utm_medium=member_desktop&rcm=ACoAADLgq_gB5geiRrJOyPnTiCbtDlCNZYds1p8" target="_blank" rel="noopener noreferrer" className="font-bold text-foreground text-lg hover:text-accent transition-colors inline-flex items-center gap-1.5">{v.organization} <ExternalLink className="w-3.5 h-3.5" /></a>
                   <p className="text-sm text-accent font-medium flex items-center gap-1">
                     <motion.div
                       animate={{ scale: [1, 1.2, 1] }}
