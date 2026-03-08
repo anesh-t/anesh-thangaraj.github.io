@@ -71,6 +71,10 @@ const Header = () => {
             className="text-accent inline-block"
             animate={{ scale: [1, 1.3, 1] }}
             transition={{ repeat: Infinity, duration: 2, ease: "easeInOut", repeatDelay: 3 }}
+          >.</motion.span>T
+            className="text-accent inline-block"
+            animate={{ scale: [1, 1.3, 1] }}
+            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut", repeatDelay: 3 }}
           >.</motion.span>
         </motion.a>
 
