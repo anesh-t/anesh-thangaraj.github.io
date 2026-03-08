@@ -165,7 +165,7 @@ const BeyondWorkSection = () => (
             }}
           >
             <Instagram className="w-5 h-5" />
-            Follow my adventures on Instagram
+            Follow on Instagram
           </motion.a>
         </motion.div>
       </div>
