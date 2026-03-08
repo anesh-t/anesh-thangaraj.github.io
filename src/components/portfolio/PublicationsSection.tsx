@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { BookOpen, ExternalLink, Eye, Download, TrendingUp, Quote, Award } from "lucide-react";
+import { BookOpen, ExternalLink, Eye, Download, TrendingUp, Quote } from "lucide-react";
 
 const metrics = [
   { icon: Quote, value: "26", label: "Citations", gradient: "from-violet-500 to-purple-500" },
